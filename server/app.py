@@ -64,7 +64,6 @@ class RestaurantPizzas(Resource):
             db.session.add(restaurant_pizza)
             db.session.commit()
             
-            # Return the associated pizza and restaurant data
             return make_response(
                 jsonify(restaurant_pizza.to_dict(
                     only=('id', 'price', 'pizza_id', 'restaurant_id', 
@@ -74,7 +73,7 @@ class RestaurantPizzas(Resource):
                 201
             )
         except ValueError as e:
-            return make_response(jsonify({"errors": [str(e)]}), 400)
+            return make_response(jsonify({"errors": ["validation errors"]}), 400)
         except Exception as e:
             return make_response(jsonify({"errors": ["validation errors"]}), 400)
 
